@@ -27,7 +27,7 @@ class TemplateRequest extends RequestAbstract
     }
     public function setType($type)
     {
-        if($type !== self::INLINE && $type !== self::INCLUDED) {
+        if ($type !== self::INLINE && $type !== self::INCLUDED) {
             throw new \InvalidArgumentException(
                 'type should be '.self::INLINE.' or '.self::INCLUDED
             );

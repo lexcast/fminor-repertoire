@@ -36,7 +36,7 @@ class WebpageChord extends ChordAbstract
     {
         $webpages = $parManager->getChordParameters('fminor', 'webpage');
         $requests = array();
-        foreach($webpages as $key => $webpage) {
+        foreach ($webpages as $key => $webpage) {
             foreach ($webpage['parts'] as $part) {
                 if (!$parManager->hasFeatureById($part, 'embeddedable')) {
                     throw new \InvalidArgumentException(
@@ -76,6 +76,7 @@ class WebpageChord extends ChordAbstract
         $route->setMethods(array('GET'));
         $route->setController('Default');
         $route->setAction($key);
+
         return $route;
     }
     private function createController($key, $webpage)
@@ -87,6 +88,7 @@ class WebpageChord extends ChordAbstract
         $controller->setCode(
             'return $this->render(\'fminor.webpage.'.$key.'.template.php\');'
         );
+
         return $controller;
     }
     private function createTemplate($key, $webpage)

@@ -25,7 +25,7 @@ class AssetRequest extends RequestAbstract
     }
     public function setType($type)
     {
-        if($type !== self::STYLE && $type !== self::SCRIPT) {
+        if ($type !== self::STYLE && $type !== self::SCRIPT) {
             throw new \InvalidArgumentException(
                 'type should be '.self::STYLE.' or '.self::SCRIPT
             );

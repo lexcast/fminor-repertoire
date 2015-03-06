@@ -15,19 +15,19 @@ class ControllerGenerator extends GeneratorAbstract
     {
         $controllers = array();
         foreach (ControllerRequest::filter($requests) as $request) {
-            if(! isset($controllers[$request->getController()])) {
+            if (! isset($controllers[$request->getController()])) {
                 $controllers[$request->getController()] = array(
                     'name' => $request->getController(),
-                    'actions' => array()
+                    'actions' => array(),
                 );
             }
             $controllers[$request->getController()]['actions'][] = array(
                 'name' => $request->getAction(),
-                'code' => $request->getCode()
+                'code' => $request->getCode(),
             );
         }
         $twig = new TwigEngine(__DIR__);
-        foreach($controllers as $controller) {
+        foreach ($controllers as $controller) {
             $this->create(
                 'src/App/Controller/',
                 $controller['name'].'Controller.php',
