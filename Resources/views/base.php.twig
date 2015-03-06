@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title><?php $view['slots']->output('title', '{{ project_name  }}') ?></title>
+	<?php $view['slots']->output('stylesheets') ?>
+    {% for style in styles %}
+        <link href="{{ style }}" rel="stylesheet">
+    {% endfor %}
+	<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+</head>
+<body id="page-top" class="index">
+	<?php $view['slots']->output('_content') ?>
+        {% for script in scripts %}
+            <script src="{{ script }}"></script>
+        {% endfor %}
+	<?php $view['slots']->output('scripts') ?>
+</body>
+</html>

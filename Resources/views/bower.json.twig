@@ -1,0 +1,24 @@
+{
+    "name": "{{ project_name }}",
+    "version": "1.0",
+    "dependencies": {
+        {% for library in libraries %}
+            "{{ library }}": "latest"{% if not loop.last %},{% endif %}
+        {% endfor %}
+    },
+     "ignore": [ "md" ],
+    "install": {
+        "path": {
+            "css": "web/css",
+            "js": "web/js",
+            "min.css": "web/css",
+            "min.js": "web/js",
+            "eot": "web/fonts",
+            "svg": "web/fonts",
+            "ttf": "web/fonts",
+            "woff": "web/fonts",
+            "woff2": "web/fonts",
+            "otf": "web/fonts"
+        }
+    }
+}

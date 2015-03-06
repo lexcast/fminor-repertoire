@@ -30,7 +30,8 @@ class FminorRepertoire implements RepertoireInterface
         return array(
                 new Generator\TemplatingGenerator(),
                 new Generator\ControllerGenerator(),
-                new Generator\RoutingGenerator()
+                new Generator\RoutingGenerator(),
+                new Generator\AssetGenerator()
         );
     }
     /* (non-PHPdoc)
