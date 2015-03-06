@@ -24,19 +24,19 @@ class HeaderChord extends ChordAbstract
      */
     public function generateRequests(ParametersManager $parManager)
     {
-      $headers = $parManager->getChordParameters('fminor','header');
-      $twig = new TwigEngine(__DIR__);
-      $requests = array();
-      for ($i = 0; $i<count($headers);$i++) {
-          $header = $headers[$i];
-          $request = new TemplateRequest();
-          $request->setId('fminor.header.'.$header);
-          $request->setType(TemplateRequest::INLINE);
-          $request->setContent($twig->render('header.php.twig', array('name' => $header)));
-          $requests[] = $request;
-      }
+        $headers = $parManager->getChordParameters('fminor', 'header');
+        $twig = new TwigEngine(__DIR__);
+        $requests = array();
+        for ($i = 0; $i<count($headers);$i++) {
+            $header = $headers[$i];
+            $request = new TemplateRequest();
+            $request->setId('fminor.header.'.$header);
+            $request->setType(TemplateRequest::INLINE);
+            $request->setContent($twig->render('header.php.twig', array('name' => $header)));
+            $requests[] = $request;
+        }
 
-      return $requests;
+        return $requests;
     }
     /* (non-PHPdoc)
      * @see \Fminor\Core\Chord\ChordInterface::getName()
