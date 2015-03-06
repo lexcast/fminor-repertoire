@@ -29,7 +29,7 @@ class ControllerGenerator extends GeneratorAbstract
         $twig = new TwigEngine(__DIR__);
         foreach($controllers as $controller) {
             $this->create(
-                'src/App/Controller',
+                'src/App/Controller/',
                 $controller['name'].'Controller.php',
                 $twig->render('controller.php.twig', array('controller' => $controller))
             );

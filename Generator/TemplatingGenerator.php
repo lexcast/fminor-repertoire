@@ -16,7 +16,7 @@ class TemplatingGenerator extends GeneratorAbstract
         foreach ( $temReqs as $request) {
             $request->setContent($this->processTemplate($request->getContent(), $requests));
             if($request->getType() === TemplateRequest::INCLUDED) {
-                $this->create('src/Resources/views', $request->getId().'.php', $request->getContent());
+                $this->create('src/Resources/views/', $request->getId().'.php', $request->getContent());
             }
         }
     }

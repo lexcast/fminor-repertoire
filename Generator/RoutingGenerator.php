@@ -15,6 +15,6 @@ class RoutingGenerator extends GeneratorAbstract
     {
         $twig = new TwigEngine(__DIR__);
         $param = array('routes' => RoutingRequest::filter($requests));
-        $this->create('src/Config', 'routes.php', $twig->render('routes.php.twig', $param ));
+        $this->create('src/Config/', 'routes.php', $twig->render('routes.php.twig', $param ));
     }
 }
