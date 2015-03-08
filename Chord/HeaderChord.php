@@ -14,7 +14,17 @@ class HeaderChord extends ChordAbstract
     public function getConfigNode()
     {
         $node = $this->getChordNode();
-        $node->prototype('scalar')->end();
+        $node
+        ->prototype('array')
+            ->children()
+                ->scalarNode('inline')
+                    ->defaultValue(true)
+                ->end()
+                ->arrayNode('parts')
+                    ->prototype('scalar')->end()
+                ->end()
+            ->end()
+        ->end();
 
         return $node;
     }
@@ -27,13 +37,26 @@ class HeaderChord extends ChordAbstract
         $headers = $parManager->getChordParameters('fminor', 'header');
         $twig = new TwigEngine(__DIR__);
         $requests = array();
-        for ($i = 0; $i<count($headers);$i++) {
-            $header = $headers[$i];
+        foreach ($headers as $key => $header) {
+            foreach ($header['parts'] as $part) {
+                if (!$parManager->hasFeatureById($part, 'embeddedable')) {
+                    throw new \InvalidArgumentException(
+                        'parts should support be embeddedable'
+                    );
+                }
+            }
             $request = new TemplateRequest();
-            $request->setId('fminor.header.'.$header);
-            $request->setType(TemplateRequest::INLINE);
-            $request->setContent($twig->render('header.php.twig', array('name' => $header)));
-            $requests[] = $request;
+            $type = $header['inline'] === true ?
+                TemplateRequest::INLINE : TemplateRequest::INCLUDED;
+            $request
+                ->setId('fminor.header.'.$key)
+                ->setType($type)
+                ->setContent($twig->render('header.php.twig', array(
+                        'name' => $key,
+                        'parts' => $header['parts'])
+                        )
+                    );
+                $requests[] = $request;
         }
 
         return $requests;
