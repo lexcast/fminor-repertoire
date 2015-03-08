@@ -35,7 +35,7 @@ class TemplatingGenerator extends GeneratorAbstract
                     $content = preg_replace('/@(.*?)@/', $request->getContent(), $content, 1);
                 } elseif ($type === TemplateRequest::INCLUDED) {
                     $content = preg_replace(
-                        '/@(.*?)@/', "<?php $view->render('".$match[1].".php'); ?>", $content, 1
+                        '/@(.*?)@/', '<?php echo $view->render(\''.$match[1].'.php\') ?>', $content, 1
                     );
                 }
             }
