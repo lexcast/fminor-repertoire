@@ -14,7 +14,17 @@ class SectionChord extends ChordAbstract
     public function getConfigNode()
     {
         $node = $this->getChordNode();
-        $node->prototype('scalar')->end();
+        $node
+        ->prototype('array')
+            ->children()
+                ->scalarNode('inline')
+                    ->defaultValue(true)
+                ->end()
+                ->arrayNode('parts')
+                    ->prototype('scalar')->end()
+                ->end()
+            ->end()
+        ->end();
 
         return $node;
     }
@@ -27,13 +37,26 @@ class SectionChord extends ChordAbstract
         $sections = $parManager->getChordParameters('fminor', 'section');
         $twig = new TwigEngine(__DIR__);
         $requests = array();
-        for ($i = 0; $i<count($sections);$i++) {
-            $section = $sections[$i];
+        foreach ($sections as $key => $section) {
+            foreach ($section['parts'] as $part) {
+                if (!$parManager->hasFeatureById($part, 'embeddedable')) {
+                    throw new \InvalidArgumentException(
+                        'parts should support be embeddedable'
+                    );
+                }
+            }
             $request = new TemplateRequest();
-            $request->setId('fminor.section.'.$section);
-            $request->setType(TemplateRequest::INLINE);
-            $request->setContent($twig->render('section.php.twig', array('name' => $section)));
-            $requests[] = $request;
+            $type = $section['inline'] === true ?
+                TemplateRequest::INLINE : TemplateRequest::INCLUDED;
+            $request
+                ->setId('fminor.section.'.$key)
+                ->setType($type)
+                ->setContent($twig->render('section.php.twig', array(
+                        'name' => $key,
+                        'parts' => $section['parts'])
+                        )
+                    );
+                $requests[] = $request;
         }
 
         return $requests;
