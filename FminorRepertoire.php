@@ -13,6 +13,8 @@ class FminorRepertoire implements RepertoireInterface
         return array(
                 new Chord\SectionChord(),
                 new Chord\WebpageChord(),
+                new Chord\FooterChord(),
+                new Chord\HeaderChord(),
         );
     }
     /* (non-PHPdoc)
