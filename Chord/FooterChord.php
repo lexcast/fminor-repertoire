@@ -17,8 +17,8 @@ class FooterChord extends ChordAbstract
         $node
         ->prototype('array')
             ->children()
-                ->scalarNode('inline')
-                    ->defaultValue(true)
+                ->booleanNode('inline')
+                    ->defaultTrue()
                 ->end()
                 ->arrayNode('parts')
                     ->prototype('scalar')->end()
