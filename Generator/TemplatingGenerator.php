@@ -3,6 +3,7 @@ namespace Fminor\Repertoire\Generator;
 
 use Fminor\Core\Generator\GeneratorAbstract;
 use Fminor\Repertoire\Request\TemplateRequest;
+use Fminor\Repertoire\Request\RoutingRequest;
 use Fminor\Core\Config\ParametersManager;
 
 class TemplatingGenerator extends GeneratorAbstract
@@ -45,7 +46,7 @@ class TemplatingGenerator extends GeneratorAbstract
         foreach ($linkMatches as $match) {
             $request = $this->getRequestById($requests, $match[1]);
             if ($request instanceof TemplateRequest) {
-                $anchor = substr($match[1], strrpos($match[1], '.'));
+                $anchor = substr($match[1], strrpos($match[1], '.')+1);
                 $content = preg_replace('/%(.*?)%/', '#'.$anchor, $content, 1);
             } elseif ($request instanceof RoutingRequest) {
                 $content = preg_replace('/%(.*?)%/', $request->getPath(), $content, 1);
