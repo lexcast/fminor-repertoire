@@ -15,6 +15,7 @@ class FminorRepertoire implements RepertoireInterface
                 new Chord\WebpageChord(),
                 new Chord\FooterChord(),
                 new Chord\HeaderChord(),
+                new Chord\MenuChord(),
         );
     }
     /* (non-PHPdoc)
