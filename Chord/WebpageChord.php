@@ -65,7 +65,7 @@ class WebpageChord extends ChordAbstract
     public function getSupportedFeatures()
     {
         return array(
-            'linkeable',
+            'linkable',
         );
     }
     private function createRoute($key, $webpage)
