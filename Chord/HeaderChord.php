@@ -53,10 +53,10 @@ class HeaderChord extends ChordAbstract
                 ->setType($type)
                 ->setContent($twig->render('header.php.twig', array(
                         'name' => $key,
-                        'parts' => $header['parts'])
+                        'parts' => $header['parts'], )
                         )
                     );
-                $requests[] = $request;
+            $requests[] = $request;
         }
 
         return $requests;

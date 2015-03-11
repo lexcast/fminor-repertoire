@@ -57,10 +57,10 @@ class FooterChord extends ChordAbstract
                         'name' => $key,
                         'company_name' => $company,
                         'year' => $year,
-                        'parts' => $footer['parts'])
+                        'parts' => $footer['parts'], )
                         )
                     );
-                $requests[] = $request;
+            $requests[] = $request;
         }
 
         return $requests;

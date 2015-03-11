@@ -53,10 +53,10 @@ class SectionChord extends ChordAbstract
                 ->setType($type)
                 ->setContent($twig->render('section.php.twig', array(
                         'name' => $key,
-                        'parts' => $section['parts'])
+                        'parts' => $section['parts'], )
                         )
                     );
-                $requests[] = $request;
+            $requests[] = $request;
         }
 
         return $requests;
@@ -76,7 +76,7 @@ class SectionChord extends ChordAbstract
     {
         return array(
             'embeddedable',
-            'linkeable',
+            'linkable',
         );
     }
 }
