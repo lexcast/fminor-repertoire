@@ -1,0 +1,47 @@
+<nav class="navbar navbar-default" id="{{ name }}">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#{{ name }}-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            {% if brand != 'none' %}
+            <a class="navbar-brand" href="#">
+                {% if brand == 'text' %}
+                    {{project_name}}
+                {% else %}
+                    <img alt="logo" src="/img/logo.png">
+                {% endif %}
+            </a>
+            {% endif %}
+        </div>
+        <div class="collapse navbar-collapse" id="{{ name }}-navbar-collapse-1">
+                {% for part in parts %}
+                    {% if part.type == 'links' %}
+                        <ul class="nav navbar-nav navbar-{{ part.position }}">
+                            {% for key_elem, elem in part.parts %}
+                                {% if elem.type == 'link' %}
+                                    <li><a href="%{{ elem.part }}%">{{ key_elem }}</a></li>
+                                {% elseif elem.type == 'dropdown' %}
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ key_elem }} <span class="caret"></span></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            {% for key_link, link in elem.parts %}
+                                                <li><a href="%{{ link.part }}%">{{ key_link }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    {% elseif part.type == 'embedded' %}
+                        <div class="nav navbar-nav navbar-{{ part.position }}">
+                            @{{ part.part }}@
+                        </div>
+                    {% endif %}
+                {% endfor %}
+        </div>
+    </div>
+</nav>
