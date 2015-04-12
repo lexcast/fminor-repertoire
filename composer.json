@@ -2,15 +2,13 @@
 	"name" : "lexcast/fminor-repertoire",
 	"description" : "Basic repertoire of the Fminor project",
 	"license" : "MIT",
-	"autoload-dev" : {
+	"autoload" : {
 		"psr-4" : {
 			"Fminor\\Repertoire\\" : ""
 		}
 	},
 	"require" : {
-		"php" : ">=5.3.3"
-	},
-	"require-dev" : {
+		"php" : ">=5.3.3",
 		"lexcast/fminor-core" : "dev-master"
 	},
 	"authors" : [{
