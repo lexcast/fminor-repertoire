@@ -1,0 +1,23 @@
+{
+	"name" : "lexcast/fminor-repertoire",
+	"description" : "Basic repertoire of the Fminor project",
+	"version" : "1.0-dev",
+	"license" : "MIT",
+	"autoload-dev" : {
+		"psr-4" : {
+			"Fminor\\Repertoire" : ""
+		}
+	},
+	"require" : {
+		"php" : ">=5.3.3"
+	},
+	"require-dev" : {
+		"lexcast/fminor-core" : "~1.0-dev"
+	},
+	"authors" : [{
+			"name" : "Daniel Alejandro Cast",
+			"email" : "lexcast13@gmail.com",
+			"role" : "Creator"
+		}
+	]
+}
