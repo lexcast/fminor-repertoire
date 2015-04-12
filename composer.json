@@ -12,7 +12,7 @@
 		"php" : ">=5.3.3"
 	},
 	"require-dev" : {
-		"lexcast/fminor-core" : "~1.0-dev"
+		"lexcast/fminor-core" : "1.0-dev"
 	},
 	"authors" : [{
 			"name" : "Daniel Alejandro Cast",
