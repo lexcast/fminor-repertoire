@@ -4,7 +4,7 @@
 	"license" : "MIT",
 	"autoload-dev" : {
 		"psr-4" : {
-			"Fminor\\Repertoire" : ""
+			"Fminor\\Repertoire\\" : ""
 		}
 	},
 	"require" : {
